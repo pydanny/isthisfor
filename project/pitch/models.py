@@ -47,6 +47,7 @@ class Pitch(models.Model):
     def negative_votes(self):
         return Comment.objects.filter(pitch=self, vote=-1).count()
 
+    def positive_votes(self):
         return Comment.objects.filter(pitch=self, vote=1).count()
 
     def negative_comments(self):
