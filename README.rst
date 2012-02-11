@@ -12,3 +12,12 @@ How it works
 
     * voting
     * comments
+
+The crunchbase API
+===================
+
+https://gist.github.com/1226556::
+
+    import requests
+    r = requests.get('http://api.crunchbase.com/v/1/company/facebook.js')
+    print(r.content)
