@@ -59,6 +59,9 @@ class Pitch(models.Model):
     def positive_comments(self):
         return Comment.objects.filter(pitch=self, vote=1)
 
+    def score(self):
+        return Comment.objects.filter(pitch=self, vote=1) - Comment.objects.filter(pitch=self, vote=-1)
+
 
 class CommentManager(models.Manager):
     def user_comments(self, user):
