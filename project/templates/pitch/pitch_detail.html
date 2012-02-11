@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="row pitch-container">
-    <div class="span16">
+    <div class="span12">
         <h1 class='pitch-name'>{{ pitch.name }}</h1>
         <p class='pitch'>
             {% if pitch.pitch %}
@@ -23,6 +23,8 @@
         <h3>Comments</h3>
     </div>
 </div>
+
+
 {% if pitch.comment_set.all %}
     {% for comment in pitch.comment_set.all %}
 <div class='comment-list row'>
@@ -47,13 +49,43 @@
 {% endfor %}
 
 <p class="prepend-top2">
-    <a class="btn" href="{% url comment_add_form pitch.slug %}">Comment on this startup pitch</a>
+    <a class="btn btn-info" href="{% url comment_add_form pitch.slug %}">Comment on this startup pitch</a>
 </p>            
 {% else %}
     <p class="prepend-top2">
-        No comments yet. <a class="btn"  href="{% url comment_add_form pitch.slug %}">Be the first to comment!</a>
+        No comments yet. <a class="btn btn-info"  href="{% url comment_add_form pitch.slug %}">Be the first to comment!</a>
     </p>                    
 {% endif %}
+
+    {% if pitch.related_pitch_1 %}
+    <div class="row ">
+        <div class="span8">
+            <h3>Related Concept: {{ pitch.related_pitch_title_1 }}</h3>
+            {{ pitch.related_pitch_1|safe }}
+        </div>
+    </div>
+    {% endif %}
+
+
+    {% if pitch.related_pitch_2 %}
+    <div class="row ">
+        <div class="span8">
+            <h3>Related Concept: {{ pitch.related_pitch_title_2 }}</h3>
+            {{ pitch.related_pitch_2|safe }}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if pitch.related_pitch_3 %}
+    <div class="row ">
+        <div class="span8">
+            <h3>Related Concept: {{ pitch.related_pitch_title_3 }}</h3>
+            {{ pitch.related_pitch_3|safe }}
+        </div>
+    </div>
+    {% endif %}
+
+
 
 {% endblock %}
 
