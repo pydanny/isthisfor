@@ -37,7 +37,7 @@ class Pitch(models.Model):
         return u'%s' % self.name
 
     class Meta:
-        order = ["-pub_date"]
+        ordering = ["-pub_date",]
 
     def total_votes(self):
         return Comment.objects.filter(pitch=self).aggregate(agg_votes=Sum("votes"))["agg_votes"]
