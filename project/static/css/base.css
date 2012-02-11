@@ -67,3 +67,7 @@ span.score.positive{color:#0c0}
 
 #tagline{font-size:46px;line-height:50px;}
 #explanation{font-size:18px;margin-top:10px;}
+
+
+.comment-list p{font-size:15px}
+.comment-list{padding-bottom:15px;padding-top:15px;border-bottom:1px solid rgba(0,0,0,.2)}
