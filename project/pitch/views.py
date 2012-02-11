@@ -31,4 +31,4 @@ class PitchEditView(UpdateView):
 
     form = PitchForm
     template_name='pitch/pitch_edit_form.html'
-    model=Pitch    
+    model=Pitch
