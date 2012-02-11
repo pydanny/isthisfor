@@ -108,7 +108,7 @@ PREREQ_APPS = [
 ]
 
 PROJECT_APPS = [
-    # all projects go here
+    'pitch',
 ]
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
