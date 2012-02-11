@@ -15,5 +15,4 @@ class CommentForm(forms.ModelForm):
     class Meta:
 
         model = Comment
-        fields = ('vote', 'comment',)
-        exclude = ('user', 'pitch', 'pub_date')        
+        fields = ('user','vote', 'comment',)
