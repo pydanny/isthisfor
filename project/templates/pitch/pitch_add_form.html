@@ -7,10 +7,12 @@ Add your pitch
 {% block content %}
 <h1>Add Pitch</h1>
 
-<form>
+<form method="post">
+    {% csrf_token %}
     {% for field in form %}
         {% include "core/_field.html" %}
     {% endfor %}
+    <button type="submit" class="btn">Add pitch</button>
 </form>
 
 
