@@ -11,6 +11,7 @@ class Pitch(models.Model):
     """
 
     name = models.CharField(_('Name'), max_length=200)
+    email = models.EmailField()
     pitch = models.TextField()
     slug = models.SlugField()
     pub_date = models.DateField(_('Date Published'), default=datetime.date.today)
