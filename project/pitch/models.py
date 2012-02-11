@@ -14,10 +14,11 @@ from django.dispatch import receiver
 class PitchManager(models.Manager):
     def top_pitches(self):
         #FIXME Use correct number of pitches
-        top_ids = Comment.objects.values("pitch_id").aggregate(agg_votes=Sum("vote"))[:100]
-        top_ids.sort(key=itemgetter("agg_votes", reverse=True))
+        top_ids = Comment.objects.values("pitch_id").annotate(agg_votes=Sum("vote"))[:100]
+        top_ids = list(top_ids)
+        top_ids.sort(key=itemgetter("agg_votes"), reverse=True)
         top_ids = [c['pitch_id'] for c in top_ids]
-        pitches = self.filter(id__in=top_ids).in_bulk()
+        pitches = self.in_bulk(top_ids)
         return map(lambda x: pitches[x], top_ids)
 
     def recent_pitches(self):
@@ -31,10 +32,10 @@ class Pitch(models.Model):
 
     name = models.CharField(_('Name of your pitch'), max_length=200)
     email = models.EmailField(_("Email"), help_text=_("Where you want the PayPal money during buyout sent!"))
-    pitch = models.TextField()
+    pitch = models.CharField(max_length=90)
     slug = models.SlugField()
     pub_date = models.DateField(_('Date Published'), default=datetime.date.today)
-    related_pitch = models.CharField(_("Related Email"), help_text=_("Provide up to three companies with a similiar concept"), max_length=255, blank=True, null=True)
+    related_pitch = models.CharField(_("Related Concepts"), help_text=_("Provide up to three companies with a similiar concept"), max_length=255, blank=True, null=True)
     related_pitch_1 = models.TextField(blank=True, null=True)
     related_pitch_2 = models.TextField(blank=True, null=True)
     related_pitch_3 = models.TextField(blank=True, null=True)        
