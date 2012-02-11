@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+All Pitch
+{% endblock %}
+
+{% block content %}
+<h1>All Pitch</h1>
+
+{% if latest_pitch_list %}
+    <ul>
+    {% for pitch in latest_pitch_list %}
+        <li><a href="{% url pitch_detail pitch.slug %}">{{ pitch.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No pitch are available.</p>
+{% endif %}
+{% endblock %}

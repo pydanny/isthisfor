@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ pitch.name }} : Pitch
+{% endblock %}
+
+{% block content %}
+<h1>{{ pitch.name }}</h1>
+
+<h3>Date Published</h3>
+<p> {{ pitch.pub_date }}</p>
+
+{% endblock %}
+
