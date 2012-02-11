@@ -5,5 +5,3 @@ django-debug-toolbar==0.8.5
 South==0.7.3
 requests==0.10.1
 django-floppyforms==0.4.7
-requests==0.10.2
-#Pillow==1.7.6
