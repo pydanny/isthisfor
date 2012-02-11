@@ -6,4 +6,3 @@ South==0.7.3
 requests==0.10.2
 django-floppyforms==0.4.7
 Pillow==1.7.5
-mongoengine==0.5.2
