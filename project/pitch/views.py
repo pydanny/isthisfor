@@ -23,12 +23,3 @@ class PitchAddView(CreateView):
     form = PitchForm
     template_name='pitch/pitch_add_form.html'
     model=Pitch    
-    
-class PitchEditView(UpdateView):
-    
-    def get_success_url(self):
-        return reverse('pitch_detail', kwargs={'slug':self.object.slug})    
-
-    form = PitchForm
-    template_name='pitch/pitch_edit_form.html'
-    model=Pitch
