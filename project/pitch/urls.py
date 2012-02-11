@@ -19,6 +19,6 @@ urlpatterns = patterns('pitch.views',
     url(regex=r'^(?P<slug>[-\w]+)/$',
         view=views.PitchDetailView.as_view(),
         name='pitch_detail',
-    ),    
+    ),
 
 )
