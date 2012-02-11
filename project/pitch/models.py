@@ -30,8 +30,8 @@ class Pitch(models.Model):
     pitch = models.TextField()
     slug = models.SlugField()
     pub_date = models.DateField(_('Date Published'), default=datetime.date.today)
-    related_pitch = models.TextField()
-    tc_related_pitches = models.TextField()
+    related_pitch = models.TextField(blank=True, null=True)
+    tc_related_pitches = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
         return u'%s' % self.name
@@ -52,6 +52,7 @@ class Pitch(models.Model):
 
     def positive_comments(self):
         return Comment.objects.filter(pitch=self, vote=1)
+
 
 class CommentManager(models.Manager):
     def user_comments(self, user):
@@ -80,8 +81,12 @@ class Comment(models.Model):
     class Meta:
         ordering = ["pub_date"]
 
+
 @receiver(pre_save, sender=Pitch)
 def pitch_pre_save(sender, instance, *args, **kwargs):
     if instance.name:
         instance.slug = slugify(instance.name)
+
+    if instance.related_pitch:
+        pitches = instance.related_pitches.split(",")
 
