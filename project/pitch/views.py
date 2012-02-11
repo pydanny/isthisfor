@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 
@@ -16,12 +17,9 @@ class PitchDetailView(DetailView):
 
 class PitchAddView(CreateView):
     
-    form = PitchForm
-    template_name='pitch/pitch_add_form.html'
-    model=Pitch    
+    def get_success_url(self):
+        return reverse('pitch_detail', kwargs={'slug':self.object.slug})
     
-class PitchAddView(UpdateView):
-
-    form = PitchForm
-    template_name='pitch/pitch_edit_form.html'
-    model=Pitch    
+    model = Pitch    
+    form_class = PitchForm
+    template_name='pitch/pitch_add_form.html'
