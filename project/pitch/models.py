@@ -1,7 +1,7 @@
 import datetime
 import json
-
 import requests
+from operator import itemgetter
 
 from django.db import models
 from django.db.models import Sum
@@ -14,9 +14,9 @@ from django.dispatch import receiver
 class PitchManager(models.Manager):
     def top_pitches(self):
         #FIXME Use correct number of pitches
-        top_ids = [c['pitch_id'] for c in
-            Comment.objects.values("pitch_id").aggregate(agg_votes=Sum("vote")).order_by("-agg_votes")[:10]
-        ]
+        top_ids = Comment.objects.values("pitch_id").aggregate(agg_votes=Sum("vote"))[:100]
+        top_ids.sort(key=itemgetter("agg_votes", reverse=True))
+        top_ids = [c['pitch_id'] for c in top_ids]
         pitches = self.filter(id__in=top_ids).in_bulk()
         return map(lambda x: pitches[x], top_ids)
 
