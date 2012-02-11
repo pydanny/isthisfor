@@ -1,5 +1,6 @@
 from django.views.generic import DetailView, ListView
 
+from pitch.forms import PitchForm, CommentForm
 from pitch.models import Pitch
 
 class PitchDetailView(DetailView):
@@ -13,4 +14,3 @@ class PitchListView(ListView):
     model=Pitch
     template_name='pitch/pitch_detail.html'
     name='pitch_detail'
-    
