@@ -9,7 +9,7 @@ from pitch.forms import PitchForm, CommentForm
 from pitch.models import Pitch, Comment
 
 class PitchListView(ListView):    
-    queryset=Pitch.objects.order_by('-pub_date')
+    queryset=Pitch.objects.top_pitches()
     context_object_name='latest_pitch_list'
     template_name='pitch/pitch_list.html'
     

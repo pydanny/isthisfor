@@ -20,7 +20,7 @@
         
 <div class="row comments-container">
     <div class="span16">
-        <h3>Comments</h3>
+        <h3>Comments ({{ pitch.comment_set.count }})</h3>
     </div>
 </div>
 
@@ -32,6 +32,9 @@
             {% if comment.vote == 1 %}
                 <img src="{{ STATIC_URL }}img/pro-60x60.png" />
             {% endif %}
+            {% if comment.vote == 0 %}
+                <img src="{{ STATIC_URL }}img/meh-60x60.png" />
+            {% endif %}            
             {% if comment.vote == -1 %}
                 <img src="{{ STATIC_URL }}img/con-60x60.png" />
             {% endif %}
@@ -57,11 +60,15 @@
     </p>                    
 {% endif %}
 
+    {% if pitch.related_pitch_1 or pitch.related_pitch_2 or pitch.related_pitch_3 %}
+    <hr />
+    {% endif %}
+
     {% if pitch.related_pitch_1 %}
     <div class="row ">
         <div class="span8">
             <h3>Related Concept: {{ pitch.related_pitch_title_1 }}</h3>
-            {{ pitch.related_pitch_1|safe }}
+            {{ pitch.related_pitch_1|safe|truncatewords_html:"100" }}
         </div>
     </div>
     {% endif %}
@@ -71,7 +78,7 @@
     <div class="row ">
         <div class="span8">
             <h3>Related Concept: {{ pitch.related_pitch_title_2 }}</h3>
-            {{ pitch.related_pitch_2|safe }}
+            {{ pitch.related_pitch_2|safe|truncatewords_html:"100" }}
         </div>
     </div>
     {% endif %}
@@ -80,7 +87,7 @@
     <div class="row ">
         <div class="span8">
             <h3>Related Concept: {{ pitch.related_pitch_title_3 }}</h3>
-            {{ pitch.related_pitch_3|safe }}
+            {{ pitch.related_pitch_3|safe|truncatewords_html:"100" }}
         </div>
     </div>
     {% endif %}

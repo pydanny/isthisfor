@@ -15,7 +15,7 @@ class PitchManager(models.Manager):
     def top_pitches(self):
         #FIXME Use correct number of pitches
         top_ids = [c['pitch_id'] for c in
-            Comment.objects.values("pitch_id").aggregate(agg_votes=Sum("votes")).order_by("-agg_votes")[:10]
+            Comment.objects.values("pitch_id").aggregate(agg_votes=Sum("vote")).order_by("-agg_votes")[:10]
         ]
         pitches = self.filter(id__in=top_ids).in_bulk()
         return map(lambda x: pitches[x], top_ids)
@@ -38,6 +38,8 @@ class Pitch(models.Model):
     related_pitch_1 = models.TextField(blank=True, null=True)
     related_pitch_2 = models.TextField(blank=True, null=True)
     related_pitch_3 = models.TextField(blank=True, null=True)        
+    
+    objects = PitchManager()
 
     def __unicode__(self):
         return u'%s' % self.name
@@ -107,7 +109,7 @@ class Comment(models.Model):
     objects = CommentManager()
 
     class Meta:
-        ordering = ["-pub_date"]
+        ordering = ["-id"]
 
 
 @receiver(pre_save, sender=Pitch)
