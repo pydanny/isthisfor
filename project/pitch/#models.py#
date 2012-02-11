@@ -45,7 +45,7 @@ class Pitch(models.Model):
         ordering = ["-pub_date",]
 
     def total_votes(self):
-        return Comment.objects.filter(pitch=self).aggregate(agg_votes=Sum("vote"))["agg_votes"]
+        return Comment.objects.filter(pitch=self).aggregate(agg_votes=Sum("votes"))["agg_votes"]
 
     def negative_votes(self):
         return Comment.objects.filter(pitch=self, vote=-1).count()
