@@ -13,10 +13,12 @@ All Pitch
         <li>
             {% if pitch.total_votes > 0 %}
 						   <span class='score positive'>{{ pitch.total_votes }}</span>
-            {%  else if pitch.total_votes == 0 %}
+            {% else %}
+            {% if not pitch.total_votes %}
                <span class='score neutral'>0</span>
             {% else %}
                <span class='score negative'>{{ pitch.total_votes }}</span>
+            {% endif %}
             {% endif %}
             <h2><a href="{% url pitch_detail pitch.slug %}">{{ pitch.name }}</a></h2>
             <p>{{ pitch.pitch }}</p>
