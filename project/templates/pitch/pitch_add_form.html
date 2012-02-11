@@ -20,3 +20,12 @@ Add your pitch
 </div>
 
 {% endblock %}
+
+{% block extrajs %}
+    <script type="text/javascript">
+        $(function() {
+            console.log('asdasdasd');
+            $('#id_name').focus();
+        });
+    </script>
+{% endblock %}

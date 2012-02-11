@@ -1,6 +1,5 @@
 from django import forms
 
-
 from pitch.models import Pitch
 from pitch.models import Comment
 
