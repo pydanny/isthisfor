@@ -29,7 +29,8 @@
         <div class="vote-result span1">
             {% if comment.vote == 1 %}
                 <img src="{{ STATIC_URL }}img/pro-60x60.png" />
-            {% else %}
+            {% endif %}
+            {% if comment.vote == -1 %}
                 <img src="{{ STATIC_URL }}img/con-60x60.png" />
             {% endif %}
         </div>

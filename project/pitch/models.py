@@ -73,7 +73,7 @@ class Comment(models.Model):
 
     VOTE_CHOICES = (
         (1, 'ROCKS!'), 
-        (0, "No vote"),           
+        (0, "Meh"),           
         (-1, "SUCKS!"),
     )
     comment  = models.TextField(null=True, blank=True)
