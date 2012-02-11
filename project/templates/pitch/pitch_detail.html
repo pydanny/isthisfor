@@ -34,7 +34,7 @@
                 {% endfor %}
             </div>
             {% else %}
-            <p>No comments yet. <a href="#TODO">Be the first to comment!</a></p>
+            <p>No comments yet. <a href="{% url comment_add_form pitch.slug %}">Be the first to comment!</a></p>
             {% endif %}
 
         <h3>Date Published</h3>
