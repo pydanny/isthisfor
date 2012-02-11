@@ -8,4 +8,7 @@ How it works
 =============
 
 * You create a pitch
-* Others validate it by voting / commenting on it.
+* Others validate it by:
+
+    * voting
+    * comments
