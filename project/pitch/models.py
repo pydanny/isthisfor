@@ -71,9 +71,9 @@ class Comment(models.Model):
     """
 
     VOTE_CHOICES = (
+        (1, 'ROCKS!'), 
+        (0, "No vote"),           
         (-1, "SUCKS!"),
-        (0, "No vote"),
-        (1, "ROCKS!"),
     )
     comment  = models.TextField(null=True, blank=True)
     user     = models.CharField(_("Your name"), max_length=128, help_text="Be an uber-troll and use your real world name!")
