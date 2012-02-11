@@ -24,9 +24,12 @@ Add a comment
             {% for field in form %}
                 {% include "core/_field.html" %}
             {% endfor %}
-            </fieldset>            
-            <button type="submit" class="btn">Add comment</button>
+            </fieldset>           
+                
+            <button type="submit" class="btn btn-primary">Add comment</button>                    
         </form>
+        
+       
     </div>
 </div>
 
@@ -39,3 +42,8 @@ Add a comment
         });
     </script>
 {% endblock %}
+
+
+(1, 'ROCKS!'), 
+(0, "No vote"),           
+(-1, "SUCKS!"),
