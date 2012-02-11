@@ -18,3 +18,20 @@
 .pub-date {
     font-weight: 700;
 }
+
+#pitch-list{
+  padding-top:30px;
+  padding-left:0;
+  margin-left:0;
+}
+#pitch-list li{
+  display:block;
+  float:left;
+  list-style-type:none;
+  height:30px;
+  width:100%;
+  padding-left:0px;
+  font-size:24px;
+  font-weight:bold;
+  margin-left:0;
+}
