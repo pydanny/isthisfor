@@ -9,7 +9,17 @@
     <div class="span16">
         <h1>{{ pitch.name }}</h1>
 
-        <h2>{{ pitch.pitch }}</h2>
+        <p>
+            Published on {{ pitch.pub_date }}.
+        </p>
+
+        <p>
+            {% if pitch.pitch %}
+                {{ pitch.pitch }}
+            {% else %}
+                This startup doesn't have a pitch. WTF?!
+            {% endif %}
+        </p>
 
             {% if pitch.comment_set.all %}
             <h3>Comments </h3>
@@ -37,8 +47,9 @@
             <p>No comments yet. <a href="#TODO">Be the first to comment!</a></p>
             {% endif %}
 
-        <h3>Date Published</h3>
-        <p> {{ pitch.pub_date }}</p>
+        <p>
+            <a class="btn" href="">Comment on this startup pitch</a>
+        </p>
     </div>
 </div>
 
