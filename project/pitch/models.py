@@ -20,7 +20,7 @@ class PitchManager(models.Manager):
         return self.filter(id__in=top_ids)
 
     def recent_pitches(self):
-        self.order_by("pub_date")
+        self.order_by("-pub_date")
 
 
 class Pitch(models.Model):
@@ -85,7 +85,7 @@ class Comment(models.Model):
     objects = CommentManager()
 
     class Meta:
-        ordering = ["pub_date"]
+        ordering = ["-pub_date"]
 
 
 @receiver(pre_save, sender=Pitch)

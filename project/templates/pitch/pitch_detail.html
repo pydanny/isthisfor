@@ -9,7 +9,7 @@
     <div class="span16">
         <h1>{{ pitch.name }}</h1>
 
-        <p>
+        <p class="prepend-top">
             Published on {{ pitch.pub_date }}.
         </p>
 
@@ -21,8 +21,8 @@
             {% endif %}
         </p>
 
+            <h3>Comments</h3>
             {% if pitch.comment_set.all %}
-            <h3>Comments </h3>
             <div class='comment-list row'>
                 {% for comment in pitch.comment_set.all %}
                     <div class="vote-result span1">
@@ -44,10 +44,10 @@
                 {% endfor %}
             </div>
             {% else %}
-            <p>No comments yet. <a href="#TODO">Be the first to comment!</a></p>
+            <p>No comments yet. Be the first to comment!</p>
             {% endif %}
 
-        <p>
+        <p class="prepend-top2">
             <a class="btn" href="">Comment on this startup pitch</a>
         </p>
     </div>
