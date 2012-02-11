@@ -26,11 +26,11 @@ class Pitch(models.Model):
     """
 
     name = models.CharField(_('Name of your pitch'), max_length=200)
-    email = models.EmailField("Email of where you want the PayPal money during buyout sent")
+    email = models.EmailField(_("Email"), help_text=_("Where you want the PayPal money during buyout sent!"))
     pitch = models.TextField()
     slug = models.SlugField()
     pub_date = models.DateField(_('Date Published'), default=datetime.date.today)
-    related_pitch = models.CharField(_("Provide up to three companies with a similiar concept"), max_length=255, blank=True, null=True)
+    related_pitch = models.CharField(_("Related Email"), help_text=_("Provide up to three companies with a similiar concept"), max_length=255, blank=True, null=True)
     related_pitch_1 = models.TextField(blank=True, null=True)
     related_pitch_2 = models.TextField(blank=True, null=True)
     related_pitch_3 = models.TextField(blank=True, null=True)        
