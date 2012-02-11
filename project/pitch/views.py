@@ -6,7 +6,7 @@ class PitchDetailView(DetailView):
     
     queryset=Pitch.objects.order_by('-pub_date')
     context_object_name='latest_pitch_list'
-    template_name='pitch/pitch_list.html')
+    template_name='pitch/pitch_list.html'
     
 class PitchListView(ListView):
     
