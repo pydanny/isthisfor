@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add your pitch
+{% endblock %}
+
+{% block content %}
+<h1>Add Pitch</h1>
+
+<form>
+    {% for field in form %}
+        {% include "core/_field.html" %}
+    {% endfor %}
+</form>
+
+
+{% endblock %}
+

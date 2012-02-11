@@ -20,7 +20,7 @@ class PitchAddView(CreateView):
     template_name='pitch/pitch_add_form.html'
     model=Pitch    
     
-class PitchAddView(UpdateView):
+class PitchEditView(UpdateView):
 
     form = PitchForm
     template_name='pitch/pitch_edit_form.html'
