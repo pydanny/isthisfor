@@ -16,5 +16,9 @@ urlpatterns = patterns('pitch.views',
         view=views.PitchDetailView.as_view(),
         name='pitch_detail',
     ),
+    url(regex=r'^(?P<slug>[-\w]+)/add-comment$',
+        view=views.comment_add_form,
+        name='comment_add_form',
+    ),    
 
 )

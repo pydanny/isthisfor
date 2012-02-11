@@ -76,7 +76,7 @@ class Comment(models.Model):
         (1, "ROCKS!"),
     )
     comment  = models.TextField(null=True, blank=True)
-    user     = models.CharField(max_length=128)
+    user     = models.CharField(_("Your name"), max_length=128, help_text="Be an uber-troll and use your real world name!")
     
     vote     = models.IntegerField(choices=VOTE_CHOICES, default=0)
     pitch    = models.ForeignKey(Pitch)
