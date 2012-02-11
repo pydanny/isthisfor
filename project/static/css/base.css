@@ -10,3 +10,11 @@
         float: none; clear: both;
         padding-top: 2px;
 }
+
+.user {
+    font-weight: 700;
+}
+
+.pub-date {
+    font-weight: 700;
+}
