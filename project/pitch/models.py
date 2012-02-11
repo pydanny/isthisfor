@@ -62,7 +62,24 @@ class Pitch(models.Model):
 
     def positive_comments(self):
         return Comment.objects.filter(pitch=self, vote=1)
+        
+    def related_pitch_title_1(self):
+        try:
+            return self.related_pitch.split(",")[0]
+        except:
+            return ""
 
+    def related_pitch_title_2(self):
+        try:
+            return self.related_pitch.split(",")[1]
+        except:
+            return ""
+
+    def related_pitch_title_3(self):
+        try:
+            return self.related_pitch.split(",")[2]
+        except:
+            return ""
 
 class CommentManager(models.Manager):
     def user_comments(self, user):
@@ -77,7 +94,7 @@ class Comment(models.Model):
     VOTE_CHOICES = (
         (1, 'ROCKS!'), 
         (0, "Meh"),           
-        (-1, "SUCKS!"),
+        (-1, "WTF!"),
     )
     comment  = models.TextField(null=True, blank=True)
     user     = models.CharField(_("Your name"), max_length=128, help_text="Be an uber-troll and use your real world name!")
