@@ -5,15 +5,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
+<div class="row pitch-container">
     <div class="span16">
-        <h1>{{ pitch.name }}</h1>
-
-        <p class="prepend-top">
-            Published on {{ pitch.pub_date }}.
-        </p>
-
-        <p>
+        <h1 class='pitch-name'>{{ pitch.name }}</h1>
+        <p class='pitch'>
             {% if pitch.pitch %}
                 {{ pitch.pitch }}
             {% else %}
@@ -23,7 +18,7 @@
     </div>
 </div>
         
-<div class="row">
+<div class="row comments-container">
     <div class="span16">
         <h3>Comments</h3>
     </div>

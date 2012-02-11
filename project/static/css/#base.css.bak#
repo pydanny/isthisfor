@@ -63,7 +63,4 @@ span.score.positive{color:#0c0}
   padding-top:15px;
 }
 
-.pitch-container .pitch{font-size:24px;padding-top:10px;}
-
-#tagline{font-size:46px;line-height:50px;}
-#explanation{font-size:18px;margin-top:10px;}
+.pitch-container .pitch{font-size:24px;padding-top:10px;}5B
