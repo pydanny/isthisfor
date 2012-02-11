@@ -20,40 +20,44 @@
                 This startup doesn't have a pitch. WTF?!
             {% endif %}
         </p>
-
-            <h3>Comments</h3>
-            {% if pitch.comment_set.all %}
-            <div class='comment-list row'>
-                {% for comment in pitch.comment_set.all %}
-                    <div class="vote-result span1">
-                        {% if comment.vote == 1 %}
-                            <img src="{{ STATIC_URL }}img/pro-60x60.png" />
-                        {% else %}
-                            <img src="{{ STATIC_URL }}img/con-60x60.png" />
-                        {% endif %}
-                    </div>
-                    <div class="comment-item span11">
-            				<p>
-            					<span class='user'>{{ comment.user }}</span> said on
-                                <span class='pub-date'>{{ comment.pub_date  }}</span>:
-                            </p>
-                            <p>
-                                <span class='comment'>{{ comment.comment }}</span>
-            				</p>
-                    </div>
-                {% endfor %}
-            </div>
-
-            <p class="prepend-top2">
-                <a class="btn" href="{% url comment_add_form pitch.slug %}">Comment on this startup pitch</a>
-            </p>            
-            {% else %}
-                <p class="prepend-top2">
-                    No comments yet. <a class="btn"  href="{% url comment_add_form pitch.slug %}">Be the first to comment!</a>
-                </p>                    
-            {% endif %}
     </div>
 </div>
+        
+<div class="row">
+    <div class="span16">
+        <h3>Comments</h3>
+    </div>
+</div>
+{% if pitch.comment_set.all %}
+    {% for comment in pitch.comment_set.all %}
+<div class='comment-list row'>
+        <div class="vote-result span1">
+            {% if comment.vote == 1 %}
+                <img src="{{ STATIC_URL }}img/pro-60x60.png" />
+            {% else %}
+                <img src="{{ STATIC_URL }}img/con-60x60.png" />
+            {% endif %}
+        </div>
+        <div class="comment-item span11">
+				<p>
+					<span class='user'>{{ comment.user }}</span> said on
+                    <span class='pub-date'>{{ comment.pub_date  }}</span>:
+                </p>
+                <p>
+                    <span class='comment'>{{ comment.comment }}</span>
+				</p>
+        </div>
+    </div>
+{% endfor %}
+
+<p class="prepend-top2">
+    <a class="btn" href="{% url comment_add_form pitch.slug %}">Comment on this startup pitch</a>
+</p>            
+{% else %}
+    <p class="prepend-top2">
+        No comments yet. <a class="btn"  href="{% url comment_add_form pitch.slug %}">Be the first to comment!</a>
+    </p>                    
+{% endif %}
 
 {% endblock %}
 

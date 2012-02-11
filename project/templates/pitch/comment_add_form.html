@@ -8,7 +8,13 @@ Add a comment
 <h1>Add a comment</h1>
 <h2>to '{{ pitch.name }}'</h2>
 
-<h2>{{ pitch.pitch }}</h2>
+<p>
+    {% if pitch.pitch %}
+        {{ pitch.pitch|linebreaksbr }}
+    {% else %}
+        This startup doesn't have a pitch. WTF?!
+    {% endif %}
+</p>
 
 <div class="row">
     <div class="span12">
