@@ -110,7 +110,6 @@ PREREQ_APPS = [
 
     # external
     'startcbv',
-    'profiles',
     'django_extensions',
     'south',
 ]
@@ -153,8 +152,3 @@ DATABASES = {
     }
 }
 
-
-def make_hashed_key(key, key_prefix, version):
-    hashed_key = hashlib.sha1(key).hexdigest()
-    final_key = ':'.join([key_prefix, str(version), hashed_key])
-    return final_key
