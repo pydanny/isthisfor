@@ -9,7 +9,7 @@ class PitchForm(forms.ModelForm):
     class Meta:
         
         model = Pitch
-        exclude = ('slug', 'pub_date',)
+        exclude = ('slug', 'pub_date',) 
         
 class CommentForm(forms.ModelForm):
 
