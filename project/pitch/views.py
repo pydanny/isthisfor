@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
@@ -33,8 +34,9 @@ def comment_add_form(request, slug, template_name="pitch/comment_add_form.html")
     form = CommentForm(request.POST or None)
     if form.is_valid():
         comment = form.save(commit=False)
-        commit.pitch = pitch
+        comment.pitch = pitch
         comment.save()
+        return HttpResponseRedirect(reverse('pitch_detail', kwargs={'slug':pitch.slug}))
     
     context = {
         'pitch': pitch,
@@ -42,13 +44,3 @@ def comment_add_form(request, slug, template_name="pitch/comment_add_form.html")
     }
 
     return render(request, template_name, context)
-
-class CommentAddView(CreateView):
-    
-    def get_success_url(self):
-        return reverse('pitch_detail', kwargs={'slug':self.object.pitch.slug})
-    
-    model = Comment    
-    form_class = CommentForm
-    template_name='pitch/comment_add_form.html'
-    

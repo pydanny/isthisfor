@@ -20,7 +20,7 @@ class PitchManager(models.Manager):
         return self.filter(id__in=top_ids)
 
     def recent_pitches(self):
-        self.order_by("pub_date")
+        self.order_by("-pub_date")
 
 
 class Pitch(models.Model):
@@ -45,7 +45,7 @@ class Pitch(models.Model):
         ordering = ["-pub_date",]
 
     def total_votes(self):
-        return Comment.objects.filter(pitch=self).aggregate(agg_votes=Sum("votes"))["agg_votes"]
+        return Comment.objects.filter(pitch=self).aggregate(agg_votes=Sum("vote"))["agg_votes"]
 
     def negative_votes(self):
         return Comment.objects.filter(pitch=self, vote=-1).count()
@@ -58,6 +58,9 @@ class Pitch(models.Model):
 
     def positive_comments(self):
         return Comment.objects.filter(pitch=self, vote=1)
+
+    def score(self):
+        return Comment.objects.filter(pitch=self, vote=1) - Comment.objects.filter(pitch=self, vote=-1)
 
 
 class CommentManager(models.Manager):
@@ -76,7 +79,7 @@ class Comment(models.Model):
         (1, "ROCKS!"),
     )
     comment  = models.TextField(null=True, blank=True)
-    user     = models.CharField(max_length=128)
+    user     = models.CharField(_("Your name"), max_length=128, help_text="Be an uber-troll and use your real world name!")
     
     vote     = models.IntegerField(choices=VOTE_CHOICES, default=0)
     pitch    = models.ForeignKey(Pitch)
@@ -85,7 +88,7 @@ class Comment(models.Model):
     objects = CommentManager()
 
     class Meta:
-        ordering = ["pub_date"]
+        ordering = ["-pub_date"]
 
 
 @receiver(pre_save, sender=Pitch)

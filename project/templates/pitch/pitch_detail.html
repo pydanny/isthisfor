@@ -9,10 +9,20 @@
     <div class="span16">
         <h1>{{ pitch.name }}</h1>
 
-        <h2>{{ pitch.pitch }}</h2>
+        <p class="prepend-top">
+            Published on {{ pitch.pub_date }}.
+        </p>
 
+        <p>
+            {% if pitch.pitch %}
+                {{ pitch.pitch }}
+            {% else %}
+                This startup doesn't have a pitch. WTF?!
+            {% endif %}
+        </p>
+
+            <h3>Comments</h3>
             {% if pitch.comment_set.all %}
-            <h3>Comments </h3>
             <div class='comment-list row'>
                 {% for comment in pitch.comment_set.all %}
                     <div class="vote-result span1">
@@ -33,12 +43,15 @@
                     </div>
                 {% endfor %}
             </div>
-            {% else %}
-            <p>No comments yet. <a href="{% url comment_add_form pitch.slug %}">Be the first to comment!</a></p>
-            {% endif %}
 
-        <h3>Date Published</h3>
-        <p> {{ pitch.pub_date }}</p>
+            <p class="prepend-top2">
+                <a class="btn" href="{% url comment_add_form pitch.slug %}">Comment on this startup pitch</a>
+            </p>            
+            {% else %}
+                <p class="prepend-top2">
+                    No comments yet. <a class="btn"  href="{% url comment_add_form pitch.slug %}">Be the first to comment!</a>
+                </p>                    
+            {% endif %}
     </div>
 </div>
 
