@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from pitch.models import Pitch
+from pitch.models import Pitch, Comment
 
 class PitchAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'pub_date')
@@ -10,3 +10,4 @@ class PitchAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 admin.site.register(Pitch, PitchAdmin)
+admin.site.register(Comment)

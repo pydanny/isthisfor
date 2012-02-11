@@ -1,4 +1,4 @@
-from floppyforms import forms
+import floppyforms as forms
 
 from pitch.models import Pitch
 from pitch.models import Comment
