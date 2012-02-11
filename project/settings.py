@@ -3,7 +3,7 @@ import hashlib
 
 from django.template.defaultfilters import slugify
 
-PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/project'
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -91,7 +91,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'project.urls'
-
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
 )
