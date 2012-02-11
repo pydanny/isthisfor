@@ -9,6 +9,7 @@ class PitchForm(forms.ModelForm):
     class Meta:
         
         model = Pitch
+        fields = ('name', 'email', 'related_pitch', 'pitch',)
         exclude = ('slug', 'pub_date', 'tc_related_pitches')
                         
 class CommentForm(forms.ModelForm):
