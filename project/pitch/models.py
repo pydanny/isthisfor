@@ -1,4 +1,7 @@
 import datetime
+import json
+
+import requests
 
 from django.db import models
 from django.db.models import Sum
@@ -91,5 +94,21 @@ def pitch_pre_save(sender, instance, *args, **kwargs):
         instance.slug = slugify(instance.name)
 
     if instance.related_pitch:
-        pitches = instance.related_pitch.split(",")
+        try:
+            pitches = instance.related_pitches.split(",")
+        except:
+            pass
+        else:
+            for i, rp in enumerate(pitches[:3]):
+                resp = requests.get("http://api.crunchbase.com/v/1/company/{0}.js".format(slugify(rp)))
+                try:
+                    resp = json.loads(resp.text)
+                except:
+                    pass
+                else:
+                    try:
+                        setattr(instance, "related_pitch_{0}".format(i + 1), resp['overview'])
+                    except:
+                        pass 
+
 
