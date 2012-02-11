@@ -5,32 +5,48 @@ All Pitch
 {% endblock %}
 
 {% block content %}
-<h1>Rate These Pitches!</h1>
+<div class="row">
+    <div class="span3">
+        <img src="{{ STATIC_URL }}img/wtf.png" />
+    </div>
+    <div class="span9">
+        <h2 id="tagline">Get feedback on your pitch.</h2>
 
-{% if latest_pitch_list %}
-    <ul id="pitch-list">
-    {% for pitch in latest_pitch_list %}
-        <li>
-            {% if pitch.total_votes > 0 %}
-						   <span class='score positive'>{{ pitch.total_votes }}</span>
-            {% else %}
-            {% if not pitch.total_votes %}
-               <span class='score neutral'>0</span>
-            {% else %}
-               <span class='score negative'>{{ pitch.total_votes }}</span>
-            {% endif %}
-            {% endif %}
-            <h2><a href="{% url pitch_detail pitch.slug %}">{{ pitch.name }}</a></h2>
-            <p>{{ pitch.pitch }}</p>
-           
-             <!-- <span class='total-votes'>{{ pitch.total_votes }}</span>
-            <span class='positive-votes'>{{ pitch.positive_votes }}</span>
-            <span class='negative-votes'>{{ pitch.negative_votes }}</span>
-            -->
-</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No pitches are available.</p>
-{% endif %}
+        <p id="explanation">
+            Leverage the wisdom of the crowd to make sure you're not crazy.
+        </p>
+    </div>
+</div>
+<div class="row prepend-top2">
+    <div class="span16">
+        <h1>Rate These Pitches!</h1>
+
+        {% if latest_pitch_list %}
+            <ul id="pitch-list">
+            {% for pitch in latest_pitch_list %}
+                <li>
+                    {% if pitch.total_votes > 0 %}
+        						   <span class='score positive'>{{ pitch.total_votes }}</span>
+                    {% else %}
+                    {% if not pitch.total_votes %}
+                       <span class='score neutral'>0</span>
+                    {% else %}
+                       <span class='score negative'>{{ pitch.total_votes }}</span>
+                    {% endif %}
+                    {% endif %}
+                    <h2><a href="{% url pitch_detail pitch.slug %}">{{ pitch.name }}</a></h2>
+                    <p>{{ pitch.pitch }}</p>
+                   
+                     <!-- <span class='total-votes'>{{ pitch.total_votes }}</span>
+                    <span class='positive-votes'>{{ pitch.positive_votes }}</span>
+                    <span class='negative-votes'>{{ pitch.negative_votes }}</span>
+                    -->
+        </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No pitches are available.</p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

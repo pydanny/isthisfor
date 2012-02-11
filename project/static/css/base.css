@@ -53,3 +53,6 @@ span.score{font-size:24px;line-height:36px;float:left;width:40px;}
 span.score.neutral{color:#333;}
 span.score.negative{color:#c00}
 span.score.positive{color:#0c0}
+
+#tagline{font-size:46px;line-height:50px;}
+#explanation{font-size:18px;margin-top:10px;}
