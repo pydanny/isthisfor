@@ -7,8 +7,28 @@
 {% block content %}
 <h1>{{ pitch.name }}</h1>
 
+<h2>{{ pitch.pitch }}</h2>
+
+    {% if pitch.comment_set.all %}
+    <ul class='comment-list'>
+    {% for comment in pitch.comment_set.all %}
+        <li>
+					<p>
+						<span class='user">{{ comment.user }}</span>
+				    <span class='vote'>{{ comment.vote }}</span>
+            <span class='comment'>{{ comment.comment }}</span>
+            <span class='pub-date'>{{ comment.pub_date  }}</span>
+					</p>
+        </li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p>No comments yet. <a href="#TODO">Be the first to comment!</a></p>
+    {% endif %}
+
 <h3>Date Published</h3>
 <p> {{ pitch.pub_date }}</p>
+
 
 {% endblock %}
 
