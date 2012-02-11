@@ -5,12 +5,27 @@ All Pitch
 {% endblock %}
 
 {% block content %}
-<h1>All Pitches</h1>
+<h1>Rate These Pitches!</h1>
 
 {% if latest_pitch_list %}
-    <ul>
+    <ul id="pitch-list">
     {% for pitch in latest_pitch_list %}
-        <li><a href="{% url pitch_detail pitch.slug %}">{{ pitch.name }}</a></li>
+        <li>
+            {% if pitch.total_votes > 0 %}
+						   <span class='score positive'>{{ pitch.total_votes }}</span>
+            {%  else if pitch.total_votes == 0 %}
+               <span class='score neutral'>0</span>
+            {% else %}
+               <span class='score negative'>{{ pitch.total_votes }}</span>
+            {% endif %}
+            <h2><a href="{% url pitch_detail pitch.slug %}">{{ pitch.name }}</a></h2>
+            <p>{{ pitch.pitch }}</p>
+           
+             <!-- <span class='total-votes'>{{ pitch.total_votes }}</span>
+            <span class='positive-votes'>{{ pitch.positive_votes }}</span>
+            <span class='negative-votes'>{{ pitch.negative_votes }}</span>
+            -->
+</li>
     {% endfor %}
     </ul>
 {% else %}
