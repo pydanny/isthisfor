@@ -2,9 +2,7 @@
 isthisfor
 =========
 
-A way to validate your startup ideas. This project aids founders in the by prioritizing their helicopterization into the cloud!
-
-Just seriously helicopterized the priorities of thousands of startups into the cloud at the http://www.ballmerpeakathon.com!!!
+A way to validate your startup ideas. 
 
 How it works
 =============
