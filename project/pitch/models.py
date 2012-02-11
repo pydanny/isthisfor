@@ -90,5 +90,5 @@ def pitch_pre_save(sender, instance, *args, **kwargs):
         instance.slug = slugify(instance.name)
 
     if instance.related_pitch:
-        pitches = instance.related_pitches.split(",")
+        pitches = instance.related_pitch.split(",")
 
