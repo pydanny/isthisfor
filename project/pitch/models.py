@@ -34,7 +34,7 @@ class Pitch(models.Model):
     pitch = models.TextField()
     slug = models.SlugField()
     pub_date = models.DateField(_('Date Published'), default=datetime.date.today)
-    related_pitch = models.CharField(_("Related concepts"), help_text=_("Provide up to three companies with a similiar concept"), max_length=255, blank=True, null=True)
+    related_pitch = models.CharField(_("Related Email"), help_text=_("Provide up to three companies with a similiar concept"), max_length=255, blank=True, null=True)
     related_pitch_1 = models.TextField(blank=True, null=True)
     related_pitch_2 = models.TextField(blank=True, null=True)
     related_pitch_3 = models.TextField(blank=True, null=True)        
@@ -61,27 +61,6 @@ class Pitch(models.Model):
 
     def positive_comments(self):
         return Comment.objects.filter(pitch=self, vote=1)
-        
-    @property
-    def related_pitch_title_1(self):
-        try:
-            return self.related_pitch.split(",")[0]
-        except:
-            return ""
-
-    @property
-    def related_pitch_title_2(self):
-        try:
-            return self.related_pitch.split(",")[1]
-        except:
-            return ""
-
-    @property
-    def related_pitch_title_3(self):
-        try:
-            return self.related_pitch.split(",")[2]
-        except:
-            return ""
 
 
 class CommentManager(models.Manager):
@@ -124,9 +103,15 @@ def pitch_pre_save(sender, instance, *args, **kwargs):
             pass
         else:
             for i, rp in enumerate(pitches[:3]):
-                url = "http://api.crunchbase.com/v/1/company/{0}.js".format(slugify(rp))
-                print url
-                resp = requests.get(url)
-                if resp.status_code == 200:
-                    resp = json.loads(resp.content)
-                    setattr(instance, "related_pitch_{0}".format(i + 1), resp['overview'])                    
+                resp = requests.get("http://api.crunchbase.com/v/1/company/{0}.js".format(slugify(rp.strip())))
+                try:
+                    resp = json.loads(resp.text)
+                except:
+                    pass
+                else:
+                    try:
+                        setattr(instance, "related_pitch_{0}".format(i + 1), resp['overview'])
+                    except:
+                        pass 
+
+
