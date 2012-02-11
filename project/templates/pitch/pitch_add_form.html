@@ -9,11 +9,13 @@ Add your pitch
 
 <div class="row">
     <div class="span12">
-        <form method="post">
+        <form method="post" class="form-horizontal">
             {% csrf_token %}
+            <fieldset>
             {% for field in form %}
                 {% include "core/_field.html" %}
             {% endfor %}
+            </fieldset>            
             <button type="submit" class="btn">Add pitch</button>
         </form>
     </div>
