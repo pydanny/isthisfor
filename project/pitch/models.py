@@ -17,7 +17,8 @@ class PitchManager(models.Manager):
         top_ids = [c['pitch_id'] for c in
             Comment.objects.values("pitch_id").aggregate(agg_votes=Sum("votes")).order_by("-agg_votes")[:10]
         ]
-        return self.filter(id__in=top_ids)
+        pitches = self.filter(id__in=top_ids).in_bulk()
+        return map(lambda x: pitches[x], top_ids)
 
     def recent_pitches(self):
         self.order_by("-pub_date")
